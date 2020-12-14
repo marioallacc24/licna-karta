@@ -124,11 +124,22 @@
             
             <div id="error"></div>
             
-            <div id="eid">
-              <img id="photo" src="./assets/img/eidapplet.gif" />
-              <h1 id="name"></h1>
-              <small id="info"></small>
+            <div class="container">
+
+                <div id="eid">
+                    <img id="photo" src="./assets/img/eidapplet.gif"/> <!--[(ngModel)]="user.photo"-->
+                    <h1 id="name"></h1> <!--[(ngModel)]="user.name"-->
+                    <small id="info"></small> <!--[(ngModel)]="user.info"-->
+                  </div>
+
+                  <div class="text-center">
+                  <button (click)="onSubmit()" name="submit" [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Sacuvaj
+                </button>
             </div>
+            </div>
+            
             
             </body>
             </html>
