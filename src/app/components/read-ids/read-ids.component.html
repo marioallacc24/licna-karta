@@ -48,77 +48,7 @@
                 display: none;
             }
             </style>
-            <script type="text/javascript">
-            var nameNode;
-            var infoNode;
-            var photoNode;
-            var errorNode;
             
-            function inserted(eidInfo, photo) {
-              nameNode.innerHTML = eidInfo.name_full;
-              infoNode.innerHTML = JSON.stringify(eidInfo);
-              photoNode.src = "data:image/png;base64,"+photo;
-            }
-            function removed() {
-              nameNode.innerHTML = "";
-              infoNode.innerHTML = "";
-              photoNode.src = "eidapplet.gif";
-            }
-            
-            function error(message) {
-                errorNode.innerHTML += "<p>" + message + "</p>";
-                errorNode.style.display = "block";
-            }
-            
-            function openHost() {
-                sendCommand("");
-            }
-            
-            /**
-             * Send command to content to be forwarded via background to the host app
-             *
-             * @param command
-             */
-            function sendCommand(command) {
-                var message = {
-                    source: "page",
-                    target: "net.devbase.jfreesteel.eidnativemessaging",
-                    command: command
-                }
-                window.postMessage(message, "*");
-            }
-            
-            window.onload = function() {
-                nameNode = document.getElementById("name");
-                infoNode = document.getElementById("info");
-                photoNode = document.getElementById("photo");
-                errorNode = document.getElementById("error");
-            
-                window.addEventListener("message", function(event) {
-            
-                    var message = event.data;
-            
-                    if(event.source !== window
-                        || !message.target || message.target != "net.devbase.jfreesteel.eidnativemessaging"
-                        || !message.source || message.source != "content")
-                        return;
-            
-                    console.log("Page received from content", message);
-            
-                    if (message.error) {
-                        error(message.error);
-                    } else if (message.event && message.event == "removed") {
-                        alert("Card removed from " + message.terminal);
-                        removed();
-                    } else {
-                        alert("Card inserted in " + message.terminal);
-                        inserted(message.info, message.photo);
-                    }
-                });
-            
-                openHost();
-            }
-            </script>
             </head>
             <body>
             
