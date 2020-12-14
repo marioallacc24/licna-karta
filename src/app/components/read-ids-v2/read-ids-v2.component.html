@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+        <style>
+			body {
+ 				 padding-top: 6.5rem;
+				}
+
+                #error {
+                width: 620px;
+                margin: 15px auto;
+                border: 1px solid red;
+                padding: 3px 10px;
+                border-radius: 5px;
+                color: red;
+                display: none;
+            }
+		</style>
+    </head>
+    <body>
+
+        <div class="container">
+            <div id="error"></div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <img id="photo" src="./assets/img/eidapplet.gif"/>
+                    </div>
+                  </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="photo">Slika link:</label>
+                      <input class="form-control" type="text"  name="naziv" id="photo" [(ngModel)]="user.photo" >
+                    </div>
+                  </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="name">Ime:</label>
+                    <input class="form-control" type="text"  name="naziv" id="name" [(ngModel)]="user.name" >
+                  </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="info">Info:</label>
+                      <input class="form-control" type="text" name="opis" id="info"  [(ngModel)]="user.info" > 
+                    </div>
+                  </div>
+            <br>
+                <button (click)="onSubmit()" name="submit" [disabled]="loading" class="btn btn-primary">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Sacuvaj
+              </button>
+              </form>
+            </div>
+    </body>
+    </html>
